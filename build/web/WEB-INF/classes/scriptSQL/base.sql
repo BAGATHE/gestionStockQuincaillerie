@@ -15,11 +15,13 @@ CREATE DATABASE quincaillerie;
 GRANT ALL PRIVILEGES ON DATABASE quicaillerie to quincaillerie;
 
 /*TABLE Utilisateur*/
-CREATE TABLE USERS(
+CREATE TABLE Users(
 idUsers VARCHAR(20) PRIMARY KEY,
-nom VARCHAR(20),
-prenom VARCHAR(20),
-status VARCHAR(20));
+nom VARCHAR(20) NOT NULL,
+prenom VARCHAR(20) NOT NULL,
+email VARCHAR(20)  NOT NULL,
+password VARCHAR(20) NOT NULL,
+status VARCHAR(20) NOT NULL);
 
 
 /*TABLE CATEGGORIE*/
@@ -33,7 +35,7 @@ CREATE TABLE Categorie (
 CREATE TABLE Fournisseur (
   idFournisseur VARCHAR(20) PRIMARY KEY,
   nomFournisseur VARCHAR(50) NOT NULL,
-  type VARCHAR(50));
+  contact VARCHAR(20) NOT NULL);
 
 /*TABLE ARTICLE*/
 CREATE TABLE Article (
