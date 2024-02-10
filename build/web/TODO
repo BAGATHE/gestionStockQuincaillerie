@@ -1,0 +1,13 @@
+page index.jsp
+  -vue
+   =>(ok)formulaire de login(email,motde passe) *rediriger vers un controller servlet
+  -metier
+   =>(OK)fonction checkLogin(email,motdepasse)
+   
+  -integration
+    =>(Ok)creation servlet UserController
+    => recuperation email,mdp *utiliser fonction checkLogin(email,mdp)
+       .si return true creation sessionAdmin redirection vers home.jsp
+       .si false redirection automatique vers index.jsp(avec message erreur)
+  -base
+    table User utiliser

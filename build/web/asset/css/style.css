@@ -1,3 +1,12 @@
+/*********footer configuration*/
+#footer{
+    position:fixed;
+    bottom:0px;
+    width: 84vw;
+}
+
+
+
 /********** Template CSS **********/
 :root {
     --primary: #EB1616;

@@ -7,12 +7,12 @@ theme : Système de Gestion d'Inventaire de Quaincallerie
              -Stock
              -Utilisateur(employer,admin)
 -fonctionalité
-         =>CRUD POUR chaque entité
+         => CRUD POUR chaque entité
          => recherche multi critere -recherche de produit par fournisseur,categorie,disponibilité .......
          => gestiond de niveau de niveau de stock et de reaprovisionnement
          => statistque des produit le plus commandé stat tableau et graphique 
-         =>statistque de produit qui rapporte le plus de benefice 
-         =>Historique des Transactions:
+         => statistque de produit qui rapporte le plus de benefice 
+         => Historique des Transactions:
          Intégrez un mécanisme d'enregistrement des transactions pour suivre les modifications apportées aux données (ajouts, modifications, suppressions).
          Permettez aux utilisateurs autorisés de consulter l'historique des transactions
 
@@ -23,3 +23,39 @@ theme : Système de Gestion d'Inventaire de Quaincallerie
         => C.U.D protected by login/mot de passe
 -rapport 
         =>rapport pour les niveaux de stock,les ventes,les commandes en attente
+
+
+
+
+
+
+TODO
+fournisseur.jsp
+  -vue
+      =>titre,button ajouter pour afficher formulaire,formulaire insertion fournisseur,tableau listé fournisseur avec button (modifier,supprimier)
+  -metier
+      =>fonction qui liste toute les fournisseur R- findAllFournisseur(); doGet (FournisseurController)
+      =>fonction ajouter nouveau Fournisseur C-InsertFournisseur(); doPost (FormFournisseurController)
+      =>fonction qui update un fournisseur U-UpdateFourniseur();doPost    (FormFournisseurController)
+      =>fonction supprime Fournisseur D-DeleteFournisseur() doGet      (FournisseurController)
+  -integreation
+      => recuperation des fournisseur dans le controller servlet et afficher le resultat dans le vue dans le tableau
+      => redirection des button modifier et supprimer et ajouter dans  servlet specifique
+      => utlisation de deux servlet uniquement pour gerer le crud dans le  controller pour chaque instance
+  -table utilisé
+     =>Fournisseur
+         ==> MEME TACHE A FAIRE POUR COMMANDE,CATEGORIE,ARTICLE <===
+
+
+logique metier pour chaque entité
+ lorsqu'on clique sur le liens pour afficher tout les logique metier(CRUD) de l'entite
+  -redirection vers entitéController ->action=getList dans la methode doGet on recupere la liste de l'entité existant et on l'affiche dans le vue de l'entite
+  -la vue contient des information cité ci-dessus
+  -formulaire d'insertion rediriger vers(entiteController) => dans la methode doPost on fait l'insertion des donneé entree par l'admin dans une table
+ 
+  -button modifier sur la liste est rediriger vers (formEntiteController) action=modifier&&identite => dans la methode doget
+   en recupere en recupere les information de l'entite avec l'id et redirection vers page modification.jsp qui affiche formulaire avec les donne de l'entite
+  deja pré-rempli dans le formulaire,formulaire de modification rediriger vers (entiteController) => dans lamethode doPost on fait l'update des donne
+
+ -button delete rediriger vers (entiteController)=> dans la methode doPost on fait delete a l'aide de l'idrecuperer  
+ 

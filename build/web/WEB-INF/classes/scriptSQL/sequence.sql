@@ -7,4 +7,5 @@
  * Author:  Pc
  * Created: 2 févr. 2024
  */
-
+CREATE SEQUENCE seqFournisseur;
+CREATE SEQUENCE seqUsers;
