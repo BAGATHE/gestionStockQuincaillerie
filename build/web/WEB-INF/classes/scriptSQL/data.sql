@@ -13,3 +13,6 @@ insert into Fournisseur values(concat('Fournisseur_',nextval('seqFournisseur')),
 
 /*Table Users*/
 insert into Users values(concat('User_',nextval('seqUsers')),'Angelo','Emadaly','lolemadaly@gmail.com','vvj91hp4','Admin');
+
+/*TABLE CATEGORIEArticle*/
+insert into CategorieArticle values(concat('CategorieArticle_',nextval('seqCategorieArticle')),'Outils a Main');

@@ -3,16 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/itu/LICENCE-2/adminSys/GestionInventaireQuincaillerie/web/navigation.jsp</file>
             <file>file:/D:/itu/LICENCE-2/adminSys/GestionInventaireQuincaillerie/src/java/controller/CategorieArticleController.java</file>
-            <file>file:/D:/itu/LICENCE-2/adminSys/GestionInventaireQuincaillerie/src/java/scriptSQL/sequence.sql</file>
             <file>file:/D:/itu/LICENCE-2/adminSys/GestionInventaireQuincaillerie/src/java/scriptSQL/base.sql</file>
             <file>file:/D:/itu/LICENCE-2/adminSys/GestionInventaireQuincaillerie/src/java/dao/CategorieArticleDao.java</file>
             <file>file:/D:/itu/LICENCE-2/adminSys/GestionInventaireQuincaillerie/web/head.jsp</file>
-            <file>file:/D:/itu/LICENCE-2/adminSys/GestionInventaireQuincaillerie/src/java/controller/FournisseurController.java</file>
+            <file>file:/D:/itu/LICENCE-2/adminSys/GestionInventaireQuincaillerie/web/modificationCategorie.jsp</file>
+            <file>file:/D:/itu/LICENCE-2/adminSys/GestionInventaireQuincaillerie/web/foot.jsp</file>
+            <file>file:/D:/itu/LICENCE-2/adminSys/GestionInventaireQuincaillerie/web/article.jsp</file>
             <file>file:/D:/itu/LICENCE-2/adminSys/GestionInventaireQuincaillerie/web/categorie.jsp</file>
             <file>file:/D:/itu/LICENCE-2/adminSys/GestionInventaireQuincaillerie/web/fournisseur.jsp</file>
-            <file>file:/D:/itu/LICENCE-2/adminSys/GestionInventaireQuincaillerie/src/java/dao/FournisseurDao.java</file>
+            <file>file:/D:/itu/LICENCE-2/adminSys/GestionInventaireQuincaillerie/web/index.jsp</file>
+            <file>file:/D:/itu/LICENCE-2/adminSys/GestionInventaireQuincaillerie/web/cdc</file>
+            <file>file:/D:/itu/LICENCE-2/adminSys/GestionInventaireQuincaillerie/web/navigation.jsp</file>
+            <file>file:/D:/itu/LICENCE-2/adminSys/GestionInventaireQuincaillerie/src/java/model/CategorieArticle.java</file>
         </group>
     </open-files>
 </project-private>

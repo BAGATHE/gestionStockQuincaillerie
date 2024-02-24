@@ -29,6 +29,11 @@ CREATE TABLE CategorieArticle (
   idCategorie VARCHAR(20) PRIMARY KEY,
   nomCategorie VARCHAR(50) NOT NULL);
 
+/*TABLE MOUVEMENTCATEGORIE*/
+CREATE TABLE MouvementCategorie(
+idMouvementCategorie VARCHAR(50) PRIMARY KEY,
+idCategorie VARCHAR(20),
+FOREIGN KEY (idCategorie) REFERENCES CategorieArticle(idCategorie));
 
 /*TABLE Fournisseur*/
 CREATE TABLE Fournisseur (

@@ -1,8 +1,11 @@
 
+import dao.CategorieArticleDao;
 import dao.FournisseurDao;
 import dao.UserDao;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.CategorieArticle;
 import model.User;
 
 /*
@@ -22,9 +25,8 @@ public class Main {
      */
     public static void main(String[] args) {
         try {
-            FournisseurDao.insertMouvement("Fournisseur_9");
-            // TODO code application logic here
-           
+              List<CategorieArticle> categories = CategorieArticleDao.findAllCategorie();
+              System.out.println(categories.size());
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }

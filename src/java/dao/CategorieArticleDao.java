@@ -45,7 +45,7 @@ public class CategorieArticleDao {
    public static void update(CategorieArticle catArticle) throws Exception {
     Connection con = null;
     PreparedStatement prdSt = null;
-    String sql = "update CategorieArticle set Categorie=? where idCategorie=?";
+    String sql = "update CategorieArticle set nomCategorie=? where idCategorie=?";
     try {
         con = Connect.dbConnect("postgres");
         con.setAutoCommit(false);
@@ -95,7 +95,7 @@ public class CategorieArticleDao {
          Connection con = null;
          PreparedStatement prdSt = null;
          ResultSet res = null;
-         String sql = "select * from CategorieArticle ";
+         String sql = "select * from CategorieArticle where idCategorie not in (select idCategorie from MouvementCategorie)";
         List<CategorieArticle> allCategories = new ArrayList<>();
         try{
            con = Connect.dbConnect("postgres");
@@ -137,6 +137,27 @@ public class CategorieArticleDao {
            if (con != null) con.close();
         }
         return catArticles;
+    }
+    
+    
+    public static void insertMouvement(String idCategorie) throws Exception {
+        Connection con = null;
+        PreparedStatement prdSt = null;
+        String sql = "insert into MouvementCategorie values(concat('MouvementCategorie_',nextval('seqMouvementCategorie')),?)";
+        try {
+            con = Connect.dbConnect("postgres");
+            con.setAutoCommit(false);
+            prdSt = con.prepareStatement(sql);
+            prdSt.setString(1,idCategorie);
+            prdSt.executeUpdate();
+            con.commit();
+        } catch (SQLException e) {
+             if (con != null) con.rollback();
+             throw e;
+        } finally {
+            if (prdSt != null) prdSt.close();
+            if (con != null) con.close();
+        }
     }
     
 }
