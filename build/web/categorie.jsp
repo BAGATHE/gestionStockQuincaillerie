@@ -25,14 +25,14 @@
             <!-- Recent Sales Start -->
             <div class="container-fluid pt-4 px-4">
                 <div class="row">
-                    <h1 class="text-center">Liste Fournisseur</h1>
+                    <h1 class="text-center">Liste Categorie</h1>
                 </div>
                 
                 <!-- buuton pour afficher formulaire gerer avec js-->
                     <div class="pt-3 pb-2 mb-3 border-bottom" style="display: flex; justify-content: center">
                         <div class="btn-toolbar mb-2 mb-md-0">
                             <div class="btn-group me-2">
-                                <button type="button" class="btn btn-lg btn-outline-secondary" id="displayFormBtn">INSERER UN NOUVEAU FOURNISSEUR</button>
+                                <button type="button" class="btn btn-lg btn-outline-secondary" id="displayFormBtn">INSERER UN NOUVEAU CATEGORIE</button>
                             </div>
                         </div>
                     </div> 
@@ -42,17 +42,13 @@
                         <div class="col-md-6">
                             <div class="card bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
                                 <div class="card-header">
-                                    <h4 class="card-title text-primary">Insertion Fournisseur</h4>
+                                    <h4 class="card-title text-primary">Insertion CATEGORIE</h4>
                                 </div>
                                 <div class="card-body">
                                     <form id="loginForm" method="POST" action="InsertionController">
                                         <div class="mb-3">
-                                            <label for="nom" class="form-label">Materiaux</label>
-                                            <input type="text" class="form-control"  name="materiaux" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="prix" class="form-label">prix </label>
-                                            <input type="number" class="form-control"  name="prixm" required>
+                                            <label for="nom" class="form-label">Nom Categorie</label>
+                                            <input type="text" class="form-control"  name="categorie" required>
                                         </div>
                                         <input type="submit" class="btn btn-primary" value="Valider">
                                     </form>

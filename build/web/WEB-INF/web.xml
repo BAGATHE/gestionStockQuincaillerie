@@ -16,6 +16,10 @@
         <servlet-name>Deconnection</servlet-name>
         <servlet-class>controller.Deconnection</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CategorieArticleController</servlet-name>
+        <servlet-class>controller.CategorieArticleController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>FournisseurController</servlet-name>
         <url-pattern>/FournisseurController</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>Deconnection</servlet-name>
         <url-pattern>/Deconnection</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CategorieArticleController</servlet-name>
+        <url-pattern>/CategorieArticleController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

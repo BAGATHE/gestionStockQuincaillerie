@@ -58,4 +58,41 @@ logique metier pour chaque entité
   deja pré-rempli dans le formulaire,formulaire de modification rediriger vers (entiteController) => dans lamethode doPost on fait l'update des donne
 
  -button delete rediriger vers (entiteController)=> dans la methode doPost on fait delete a l'aide de l'idrecuperer  
- 
+
+
+
+Outils à Main:
+Marteaux, tournevis, pinces, clés, etc.
+
+Outillage Électrique:
+Perceuses, scies électriques, ponceuses, etc.
+
+Matériaux de Construction:
+Clous, vis, ciments, plâtres, bois, etc.
+
+Matériel de Plomberie:
+Tuyaux, robinets, raccords, joints, etc.
+
+Matériel Électrique:
+Interrupteurs, prises électriques, câbles, ampoules, etc.
+
+Peinture et Accessoires:
+Peintures, pinceaux, rouleaux, rubans adhésifs, etc.
+
+Quincaillerie de Porte et Fenêtre:
+Poignées, serrures, charnières, verrous, etc.
+
+Sécurité et Protection:
+Casques, gants de protection, lunettes de sécurité, etc.
+
+Matériel de Jardinage:
+Pots de fleurs, outils de jardin, graines, engrais, etc.
+
+Matériel de Fixation:
+Vis, clous, chevilles, crochets, etc.
+
+Accessoires de Rangement:
+Boîtes à outils, étagères, coffres de rangement, etc.
+
+Matériel de Quincaillerie Générale:
+Boulons, écrous, rondelles, chaînes, etc. 

@@ -50,7 +50,7 @@ public class FournisseurController extends HttpServlet {
             /******DELETE*********/
             if (action != null && !action.equals("") && action.equals("delete")) {
                  String idFournisseur = (String) request.getParameter("idFournisseur");
-                FournisseurDao.delete(idFournisseur);
+                FournisseurDao.insertMouvement(idFournisseur);
                 List<Fournisseur> fournisseurs = FournisseurDao.findAllFournisseur();
                 request.setAttribute("listFournisseur", fournisseurs);
                 path = "/fournisseur.jsp";

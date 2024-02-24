@@ -12,24 +12,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Fournisseur;
+import model.CategorieArticle;
 
 /**
  *
  * @author Pc
  */
-public class FournisseurDao {
-
-    public static void insert(Fournisseur fournisseur) throws Exception {
+public class CategorieArticleDao {
+    
+    
+    public static void insert(CategorieArticle catArticle) throws Exception {
         Connection con = null;
         PreparedStatement prdSt = null;
-        String sql = "insert into Fournisseur values(concat('Fournisseur_',nextval('seqFournisseur')),?,?)";
+        String sql = "insert into CategorieArticle values(concat('CategorieArticle_',nextval('seqCategorieArticle')),?)";
         try {
             con = Connect.dbConnect("postgres");
             con.setAutoCommit(false);
             prdSt = con.prepareStatement(sql);
-            prdSt.setString(1, fournisseur.getNomFournisseur());
-            prdSt.setString(2, fournisseur.getContact());
+            prdSt.setString(1, catArticle.getNomCategorie());
             prdSt.executeUpdate();
             con.commit();
         } catch (SQLException e) {
@@ -42,17 +42,16 @@ public class FournisseurDao {
         }
     }
 
-   public static void update(Fournisseur fournisseur) throws Exception {
+   public static void update(CategorieArticle catArticle) throws Exception {
     Connection con = null;
     PreparedStatement prdSt = null;
-    String sql = "update Fournisseur set nomFournisseur=?, contact=? where idFournisseur=?";
+    String sql = "update CategorieArticle set Categorie=? where idCategorie=?";
     try {
         con = Connect.dbConnect("postgres");
         con.setAutoCommit(false);
         prdSt = con.prepareStatement(sql);
-        prdSt.setString(1, fournisseur.getNomFournisseur());
-        prdSt.setString(2, fournisseur.getContact());
-        prdSt.setString(3, fournisseur.getIdFournisseur()); 
+        prdSt.setString(1, catArticle.getNomCategorie());
+        prdSt.setString(2, catArticle.getIdCategorie()); 
         prdSt.executeUpdate();
         con.commit();
     } catch (SQLException e) {
@@ -65,15 +64,15 @@ public class FournisseurDao {
 }
   
    
- public static void delete(String idFournisseur) throws Exception {
+ public static void delete(String idcategorie) throws Exception {
     Connection con = null;
     PreparedStatement prdSt = null;
-    String sql = "DELETE FROM Fournisseur WHERE idfournisseur=?";
+    String sql = "DELETE FROM CategorieArticle WHERE idCategorie=?";
     try {
         con = Connect.dbConnect("postgres");
         con.setAutoCommit(false);
         prdSt = con.prepareStatement(sql);
-        prdSt.setString(1, idFournisseur);
+        prdSt.setString(1, idcategorie);
         prdSt.executeUpdate();
         
         con.commit();
@@ -92,19 +91,19 @@ public class FournisseurDao {
     }
 }
 
-   public static List<Fournisseur> findAllFournisseur() throws Exception{
+   public static List<CategorieArticle> findAllCategorie() throws Exception{
          Connection con = null;
          PreparedStatement prdSt = null;
          ResultSet res = null;
-         String sql = "select * from Fournisseur where idfournisseur not in (select idfournisseur from mouvementfournisseur)";
-        List<Fournisseur> allFournisseur = new ArrayList<>();
+         String sql = "select * from CategorieArticle ";
+        List<CategorieArticle> allCategories = new ArrayList<>();
         try{
            con = Connect.dbConnect("postgres");
            prdSt = con.prepareStatement(sql);
            res = prdSt.executeQuery();
            while(res.next()){
-               Fournisseur fournisseur = new Fournisseur(res.getString("idFournisseur"),res.getString("nomFournisseur"),res.getString("contact"));
-               allFournisseur.add(fournisseur);
+              CategorieArticle catArticle = new CategorieArticle(res.getString("idCategorie"),res.getString("nomCategorie"));
+               allCategories.add(catArticle);
            }
         }catch(SQLException e){
             throw e;
@@ -113,22 +112,22 @@ public class FournisseurDao {
            if (prdSt != null) prdSt.close();
            if (con != null) con.close();
         }
-        return allFournisseur;
+        return allCategories;
     }
    
-    public static Fournisseur findFournisseurById(String id) throws Exception{
+    public static CategorieArticle findCategorieById(String id) throws Exception{
          Connection con = null;
          PreparedStatement prdSt = null;
          ResultSet res = null;
-         String sql = "select * from Fournisseur where idFournisseur=? ";
-         Fournisseur fournisseur = null;
+         String sql = "select * from CategorieArticle where idCategorie=? ";
+         CategorieArticle  catArticles = null;
         try{
            con = Connect.dbConnect("postgres");
            prdSt = con.prepareStatement(sql);
            prdSt.setString(1,id);
            res = prdSt.executeQuery();
            while(res.next()){
-                fournisseur = new Fournisseur(res.getString("idFournisseur"),res.getString("nomFournisseur"),res.getString("contact"));
+                catArticles = new CategorieArticle(res.getString("idCategorie"),res.getString("nomCategorie"));
            }
         }catch(SQLException e){
             throw e;
@@ -137,27 +136,7 @@ public class FournisseurDao {
            if (prdSt != null) prdSt.close();
            if (con != null) con.close();
         }
-        return fournisseur;
+        return catArticles;
     }
     
-    
-     public static void insertMouvement(String idFournisseur) throws Exception {
-        Connection con = null;
-        PreparedStatement prdSt = null;
-        String sql = "insert into MouvementFournisseur values(concat('MouvementFournisseur_',nextval('seqMouvementFournisseur')),?)";
-        try {
-            con = Connect.dbConnect("postgres");
-            con.setAutoCommit(false);
-            prdSt = con.prepareStatement(sql);
-            prdSt.setString(1,idFournisseur);
-            prdSt.executeUpdate();
-            con.commit();
-        } catch (SQLException e) {
-             if (con != null) con.rollback();
-             throw e;
-        } finally {
-            if (prdSt != null) prdSt.close();
-            if (con != null) con.close();
-        }
-    }
 }

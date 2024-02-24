@@ -25,10 +25,9 @@ status VARCHAR(20) NOT NULL);
 
 
 /*TABLE CATEGGORIE*/
-CREATE TABLE Categorie (
+CREATE TABLE CategorieArticle (
   idCategorie VARCHAR(20) PRIMARY KEY,
-  nomCategorie VARCHAR(50) NOT NULL,
-  idfournisseur VARCHAR(50) NOT NULL);
+  nomCategorie VARCHAR(50) NOT NULL);
 
 
 /*TABLE Fournisseur*/
@@ -36,6 +35,12 @@ CREATE TABLE Fournisseur (
   idFournisseur VARCHAR(20) PRIMARY KEY,
   nomFournisseur VARCHAR(50) NOT NULL,
   contact VARCHAR(20) NOT NULL);
+
+/*TABLE MouvementFournisseur*/
+CREATE TABLE MouvementFournisseur(
+  idMouvementFourniseur VARCHAR(50) PRIMARY KEY,
+  idFournisseur VARCHAR(20) NOT NULL,
+  FOREIGN KEY (idFournisseur) REFERENCES Fournisseur(idFournisseur));
 
 /*TABLE ARTICLE*/
 CREATE TABLE Article (

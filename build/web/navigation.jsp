@@ -26,7 +26,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Inventaire</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="FournisseurController?action=getlist" class="dropdown-item">Fournisseurs</a>
-                            <a href="categorie.jsp" class="dropdown-item">Categories Article</a>
+                            <a href="CategorieArticleController?action=getlist" class="dropdown-item">Categories Article</a>
                             <a href="article.jsp" class="dropdown-item">Article</a>
                             <a href="Commande.jsp" class="dropdown-item">Commandes</a>
                         </div>

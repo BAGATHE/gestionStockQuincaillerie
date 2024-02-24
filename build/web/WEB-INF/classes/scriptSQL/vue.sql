@@ -11,3 +11,8 @@
 v_stock_entree
 
 v_stock_sortie
+
+CREATE OR REPLACE VIEW FournisseurActif AS
+SELECT p.idPoketra, p.nom , p.types , p.look , p.taille,p.prix,mp.idmpremiere
+FROM InfoPoketra p
+JOIN PoketraMP mp ON p.idPoketra = mp.idPoketra;

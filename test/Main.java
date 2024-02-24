@@ -22,8 +22,7 @@ public class Main {
      */
     public static void main(String[] args) {
         try {
-            User user = UserDao.checkLogin("lolemadaly@gmail.com","vvj91hp4");
-            System.out.println(user.getStatus());
+            FournisseurDao.insertMouvement("Fournisseur_9");
             // TODO code application logic here
            
         } catch (Exception ex) {

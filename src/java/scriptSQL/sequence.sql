@@ -8,4 +8,6 @@
  * Created: 2 févr. 2024
  */
 CREATE SEQUENCE seqFournisseur;
+CREATE SEQUENCE seqMouvementFournisseur;
 CREATE SEQUENCE seqUsers;
+CREATE SEQUENCE seqCategorieArticle;
