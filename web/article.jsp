@@ -45,7 +45,7 @@
                                     <h4 class="card-title text-primary">Insertion Article</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form id="loginForm" method="POST" action="InsertionController">
+                                    <form id="loginForm" method="POST" action="CategorieArticleController">
                                         <div class="mb-3">
                                             <label for="nom" class="form-label">Materiaux</label>
                                             <input type="text" class="form-control"  name="materiaux" required>

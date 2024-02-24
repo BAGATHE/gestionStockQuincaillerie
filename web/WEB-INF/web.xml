@@ -20,6 +20,10 @@
         <servlet-name>CategorieArticleController</servlet-name>
         <servlet-class>controller.CategorieArticleController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FormCategorieController</servlet-name>
+        <servlet-class>controller.FormCategorieController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>FournisseurController</servlet-name>
         <url-pattern>/FournisseurController</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>CategorieArticleController</servlet-name>
         <url-pattern>/CategorieArticleController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FormCategorieController</servlet-name>
+        <url-pattern>/FormCategorieController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
