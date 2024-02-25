@@ -12,3 +12,5 @@ CREATE SEQUENCE seqMouvementFournisseur;
 CREATE SEQUENCE seqUsers;
 CREATE SEQUENCE seqCategorieArticle;
 CREATE SEQUENCE seqMouvementCategorie;
+CREATE SEQUENCE seqArticle;
+CREATE SEQUENCE seqMouvementArticle;

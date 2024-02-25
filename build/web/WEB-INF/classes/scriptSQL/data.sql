@@ -16,3 +16,7 @@ insert into Users values(concat('User_',nextval('seqUsers')),'Angelo','Emadaly',
 
 /*TABLE CATEGORIEArticle*/
 insert into CategorieArticle values(concat('CategorieArticle_',nextval('seqCategorieArticle')),'Outils a Main');
+
+
+/*TABLE ARTICLE*/
+insert into Article values (concat('Article_',nextval('seqArticle')),'Marteux',25000,35000,'CategorieArticle_1','Fournisseur_2');

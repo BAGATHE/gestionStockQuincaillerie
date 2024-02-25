@@ -51,12 +51,19 @@ CREATE TABLE MouvementFournisseur(
 CREATE TABLE Article (
   idArticle VARCHAR(40) PRIMARY KEY,
   designation VARCHAR(50) NOT NULL,
-  prixFournisseur REAL,
-  prixVente REAL
-  idCategorie VARCHAR(20) REFERENCES Categorie(idCategorie),
-  FOREIGN KEY (idCategorie) REFERENCES Categorie(idCategorie)
-);
+  prixFournisseur REAL CHECK(prixFournisseur < prixVente),
+  prixVente REAL CHECK(prixVente > prixFournisseur), 
+  idCategorie VARCHAR(20) NOT NULL,
+  idFournisseur VARCHAR(30) NOT NULL, 
+  FOREIGN KEY (idFournisseur) REFERENCES Fournisseur(idFournisseur),
+  FOREIGN KEY (idCategorie) REFERENCES CategorieArticle(idCategorie));
 
+
+/*TABLE mouvementArticle*/
+CREATE TABLE MouvementArticle(
+idMouvementArticle VARCHAR(40) PRIMARY KEY,
+idArticle VARCHAR(40) NOT NULL,
+FOREIGN KEY (idArticle) REFERENCES Article(idArticle));
 
 /*TABLE COMMANDE*/
 CREATE TABLE Commande(
