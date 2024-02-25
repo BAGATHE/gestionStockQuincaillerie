@@ -7,6 +7,7 @@ package controller;
 
 import dao.ArticleDao;
 import dao.CategorieArticleDao;
+import dao.FournisseurDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -58,18 +59,27 @@ public class ArticleController extends HttpServlet {
              * ****DELETE********
              */
             if (action != null && !action.equals("") && action.equals("delete")) {
-                String idArticle = (String) request.getParameter("id");
+                String idArticle = (String) request.getParameter("idArticle");
                 ArticleDao.insertMouvement(idArticle);
                 List<List<Object>> articles = ArticleDao.findAllArticle();
                 request.setAttribute("article", articles);
+                 /*recuperation de tout les Fournisseur*/
+              request.setAttribute("listFournisseur",FournisseurDao.findAllFournisseur());
+              /*recuperation de tout les categories*/
+              request.setAttribute("listCategorie",CategorieArticleDao.findAllCategorie());
                 path = "/article.jsp";
                 /**
                  * ***READ*****
                  */
             } else if (action != null && !action.equals("") && action.equals("getlist")) {
+              /*recuperation liste article*/
                 List<List<Object>> articles = ArticleDao.findAllArticle();
                 request.setAttribute("article", articles);
                 path = "/article.jsp";
+              /*recuperation de tout les Fournisseur*/
+              request.setAttribute("listFournisseur",FournisseurDao.findAllFournisseur());
+              /*recuperation de tout les categories*/
+              request.setAttribute("listCategorie",CategorieArticleDao.findAllCategorie());
             }
 
             RequestDispatcher dispat = request.getRequestDispatcher(path);
@@ -118,6 +128,10 @@ public class ArticleController extends HttpServlet {
                 ArticleDao.update(article);
                 List<List<Object>> articles = ArticleDao.findAllArticle();
                 request.setAttribute("article", articles);
+                /*recuperation de tout les Fournisseur*/
+                request.setAttribute("listFournisseur",FournisseurDao.findAllFournisseur());
+                /*recuperation de tout les categories*/
+                request.setAttribute("listCategorie",CategorieArticleDao.findAllCategorie());
                 path = "/article.jsp";
             } else if (action.equals("ajouter")) {
                   /*recuperation de nouvelle valeur*/
@@ -126,14 +140,20 @@ public class ArticleController extends HttpServlet {
                 double prixVente = Double.parseDouble(request.getParameter("prixVente"));
                 String idCategorie = (String)request.getParameter("idCategorie");
                 String idFournisseur = (String) request.getParameter("idFournisseur");
-                article = new Article(idArticle,designation,prixFournisseur,prixVente,idCategorie,idFournisseur);
+         
+               article = new Article(designation,prixFournisseur,prixVente,idCategorie,idFournisseur);
              /*insertion nouvelle article*/
                 ArticleDao.insert(article);
                 List<List<Object>> articles = ArticleDao.findAllArticle();
                 request.setAttribute("article", articles);
+                /*recuperation de tout les Fournisseur*/
+                request.setAttribute("listFournisseur",FournisseurDao.findAllFournisseur());
+                /*recuperation de tout les categories*/
+                request.setAttribute("listCategorie",CategorieArticleDao.findAllCategorie());
                 path = "/article.jsp";
             }
         }
+        
           RequestDispatcher dispat = request.getRequestDispatcher(path);
           dispat.forward(request, response);
     } catch (Exception e) {

@@ -85,11 +85,12 @@ public class ArticleDao {
     
   public static List<List<Object>> findAllArticle() throws SQLException {
     String sql = "SELECT A.idArticle, A.designation, A.prixFournisseur, A.prixVente, " +
-                 "C.nomCategorie, F.nomFournisseur " +
-                 "FROM Article A " +
-                 "JOIN CategorieArticle C ON A.idCategorie = C.idCategorie " +
-                 "JOIN Fournisseur F ON A.idFournisseur = F.idFournisseur" +
-                 "WHERE idArticle NOT IN (SELECT idArticle FROM MouvementArticle)";
+             "C.nomCategorie, F.nomFournisseur " +
+             "FROM Article A " +
+             "JOIN CategorieArticle C ON A.idCategorie = C.idCategorie " +
+             "JOIN Fournisseur F ON A.idFournisseur = F.idFournisseur " +
+             "WHERE A.idArticle NOT IN (SELECT idArticle FROM MouvementArticle)";
+
 
     List<List<Object>> allArticle = new ArrayList<>();
 
@@ -125,7 +126,7 @@ public class ArticleDao {
             prdSt.setString(1, id);
             res = prdSt.executeQuery();
             while (res.next()) {
-                article = new Article(res.getString("idArticle"), res.getString("designation"),res.getDouble("prixFournisseur"),res.getDouble("prixVente"),res.getString("nomCategorie"),res.getString("nomFournisseur"));
+                article = new Article(res.getString("idArticle"), res.getString("designation"),res.getDouble("prixFournisseur"),res.getDouble("prixVente"),res.getString("idCategorie"),res.getString("idFournisseur"));
             }
         } catch (SQLException e) {
             throw e;

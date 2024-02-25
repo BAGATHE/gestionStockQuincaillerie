@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Article;
-import model.CategorieArticle;
 
 /**
  *
@@ -63,9 +62,9 @@ public class FormArticleController extends HttpServlet {
               article = ArticleDao.findArticleById(idArticle);
               request.setAttribute("article",article);
               /*recuperation de tout les Fournisseur*/
-              request.setAttribute("fournisseur",FournisseurDao.findAllFournisseur());
+              request.setAttribute("listFournisseur",FournisseurDao.findAllFournisseur());
               /*recuperation de tout les categories*/
-              request.setAttribute("Categorie",CategorieArticleDao.findAllCategorie());
+              request.setAttribute("listCategorie",CategorieArticleDao.findAllCategorie());
             }
             RequestDispatcher dispat = request.getRequestDispatcher(path);
             dispat.forward(request, response);

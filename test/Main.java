@@ -1,4 +1,5 @@
 
+import dao.ArticleDao;
 import dao.CategorieArticleDao;
 import dao.FournisseurDao;
 import dao.UserDao;
@@ -26,7 +27,9 @@ public class Main {
     public static void main(String[] args) {
         try {
               List<CategorieArticle> categories = CategorieArticleDao.findAllCategorie();
+               List<List<Object>> articles = ArticleDao.findAllArticle();
               System.out.println(categories.size());
+              System.out.println(articles.size());
         } catch (Exception ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }

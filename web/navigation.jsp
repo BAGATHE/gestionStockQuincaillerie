@@ -27,7 +27,7 @@
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="FournisseurController?action=getlist" class="dropdown-item">Fournisseurs</a>
                             <a href="CategorieArticleController?action=getlist" class="dropdown-item">Categories Article</a>
-                            <a href="article.jsp" class="dropdown-item">Article</a>
+                            <a href="ArticleController?action=getlist" class="dropdown-item">Article</a>
                             <a href="Commande.jsp" class="dropdown-item">Commandes</a>
                         </div>
                     </div>
