@@ -74,6 +74,13 @@ dateCommande DATE,
 FOREIGN KEY (idArticle) REFERENCES Article(idArticle)
 );
 
+
+/*TABLE Mouvement COMMANDE*/
+CREATE TABLE MouvementCommande(
+idMouvementCommande VARCHAR(40) PRIMARY KEY,
+idCommande VARCHAR(50),
+FOREIGN KEY (idCommande) REFERENCES Commande(idCommande));
+
 /*mouvement*/
 
 /*TABLE STOCK*/

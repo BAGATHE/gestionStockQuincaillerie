@@ -169,5 +169,79 @@ public class ArticleDao {
             }
         }
     }
+    public static List<List<Object>> searchArticle(double prixMin, double prixMax, String idFournisseur, String idCategorie) throws SQLException {
+    StringBuilder stringBuilder = new StringBuilder();
+
+    stringBuilder.append("SELECT A.idArticle, A.designation, A.prixFournisseur, A.prixVente, A.idCategorie, A.idFournisseur, ");  // Added comma at the end
+    stringBuilder.append("C.nomCategorie, F.nomFournisseur ");
+    stringBuilder.append("FROM Article A ");
+    stringBuilder.append("JOIN CategorieArticle C ON A.idCategorie = C.idCategorie ");
+    stringBuilder.append("JOIN Fournisseur F ON A.idFournisseur = F.idFournisseur ");
+    stringBuilder.append("WHERE A.idArticle NOT IN (SELECT idArticle FROM MouvementArticle)");
+
+    if (prixMin >= 0 && prixMin < prixMax) {
+        stringBuilder.append(" AND A.prixVente > ").append(prixMin);
+    }
+    if (prixMax > 0 && prixMax > prixMin) {
+        stringBuilder.append(" AND A.prixVente < ").append(prixMax);
+    }
+    if (idFournisseur != null && !idFournisseur.isEmpty()) {
+        stringBuilder.append(" AND A.idFournisseur='").append(idFournisseur).append("'");
+    }
+    if (idCategorie != null && !idCategorie.isEmpty()) {
+        stringBuilder.append(" AND A.idCategorie='").append(idCategorie).append("'");
+    }
+
+    List<List<Object>> allArticle = new ArrayList<>();
+
+    Connection con = null;
+    PreparedStatement prdSt = null;
+    ResultSet res = null;
+
+    try {
+        con = Connect.dbConnect("postgres");
+        prdSt = con.prepareStatement(stringBuilder.toString());
+        res = prdSt.executeQuery();
+
+        while (res.next()) {
+            List<Object> article = new ArrayList<>();
+            article.add(res.getString("idArticle"));
+            article.add(res.getString("designation"));
+            article.add(res.getDouble("prixFournisseur"));
+            article.add(res.getDouble("prixVente"));
+            article.add(res.getString("nomCategorie"));
+            article.add(res.getString("nomFournisseur"));
+            allArticle.add(article);
+        }
+    } catch (SQLException e) {
+        throw e;
+    } finally {
+        // Close resources in finally block to ensure they are always closed
+        if (res != null) {
+            try {
+                res.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if (prdSt != null) {
+            try {
+                prdSt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if (con != null) {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    return allArticle;
+}
+
 
 }

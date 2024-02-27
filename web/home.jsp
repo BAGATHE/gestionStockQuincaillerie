@@ -1,3 +1,12 @@
+<%@page import="model.Fournisseur"%>
+<%@page import="model.CategorieArticle"%>
+<%@page import="java.util.List"%>
+<%  
+    List<CategorieArticle> categorieArticle = (List<CategorieArticle>) request.getAttribute("listCategorie");
+    List<Fournisseur> fournisseurs = (List<Fournisseur>) request.getAttribute("listFournisseur");
+
+
+%>
 <jsp:include page="head.jsp" />      
 <jsp:include page="navigation.jsp" />   
         <!-- Content Start -->
@@ -10,14 +19,40 @@
                 <a href="#" class="sidebar-toggler flex-shrink-0">
                     <i class="fa fa-bars"></i>
                 </a>
-                <form class="d-none d-md-flex ms-4">
-                    <input class="form-control bg-dark border-0" type="search" placeholder="Search">
-                </form>
-                <div class="navbar-nav align-items-center ms-auto">
-                    <div>
-                        <h4>recherche multi critere min max</h4>
-                    </div>
-                </div>
+                 <form method="POST" action="SearchController">
+                        <div class="row col-12 mb-3">
+                            <div class="col-md-2">
+                                <label for="prixMin" class="form-label">Prix min</label>
+                                <input type="number" class="form-control" name="prixMin">
+                            </div>
+                            <div class="col-md-2">
+                                <label for="prixMax" class="form-label">Prix Max</label>
+                                <input type="number" class="form-control" name="prixMax" id="prix">
+                            </div>
+                            <div class="col-md-2">
+                              <label for="Fournisseur" class="form-label">Fournisseur</label>
+                                    <select class="form-control" id="fournisseur" name="idFournisseur" >
+                                        <option value="">veuillez choisir</option>
+                                        <% for (Fournisseur fournisseur : fournisseurs) {%>
+                                        <option value="<%=fournisseur.getIdFournisseur() %>"><%= fournisseur.getNomFournisseur() %></option>
+                                        <% }%>
+                                    </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="categorie" class="form-label">categorie</label>
+                                    <select class="form-control" id="categorie" name="idCategorie">
+                                        <option value="">veuillez choisir</option>
+                                        <% for (CategorieArticle categ : categorieArticle) {%>
+                                        <option value="<%=categ.getIdCategorie()%>"><%=categ.getNomCategorie()%></option>
+                                        <% } %>
+                                    </select>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="submit" class="btn btn-primary" value="Recherche" style="margin-top: 4vh">
+                            </div>
+                           
+                        </div>
+                 </form>
             </nav>
             <!-- Navbar End -->
 
@@ -90,78 +125,4 @@
                 </div>
             </div>
             <!-- Sales Chart End -->
-
-
-            <!-- Recent Sales Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="bg-secondary text-center rounded p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">Recent Salse</h6>
-                        <a href="">Show All</a>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table text-start align-middle table-bordered table-hover mb-0">
-                            <thead>
-                                <tr class="text-white">
-                                    <th scope="col"><input class="form-check-input" type="checkbox"></th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Invoice</th>
-                                    <th scope="col">Customer</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td><input class="form-check-input" type="checkbox"></td>
-                                    <td>01 Jan 2045</td>
-                                    <td>INV-0123</td>
-                                    <td>Jhon Doe</td>
-                                    <td>$123</td>
-                                    <td>Paid</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <!-- Recent Sales End -->
            <jsp:include page="foot.jsp" />

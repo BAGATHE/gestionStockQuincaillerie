@@ -5,9 +5,11 @@
  */
 package controller;
 
-import dao.UserDao;
+import dao.ArticleDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -15,14 +17,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.User;
 
 /**
  *
  * @author Pc
  */
-public class UserController extends HttpServlet {
+public class SearchController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,7 +33,11 @@ public class UserController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-  
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -46,16 +50,7 @@ public class UserController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            String action = request.getParameter("action");
-        if ("deconnexion".equals(action)) {
-            HttpSession session = request.getSession(false);
-            if (session != null) {
-                session.invalidate();
-                response.sendRedirect(request.getContextPath() + "/index.jsp");
-            }
-        
-    }
-        
+
     }
 
     /**
@@ -69,27 +64,34 @@ public class UserController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            PrintWriter out = response.getWriter();
-            String email = (String) request.getParameter("email");
-            String password = (String) request.getParameter("password");
-            User user = UserDao.checkLogin(email,password);
-            String path="";
-              HttpSession session = request.getSession();
-            if(user!=null){
-               
-                session.setAttribute("sessionUser",user);
-                  response.sendRedirect(request.getContextPath() + "/HomeController");
-                  return;
-            }else{
-                path="index.jsp";
-                String error = "Email ou Mot de passe incorrect";
-                session.setAttribute("sessionError",error);
-                response.sendRedirect(path);
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+        response.setContentType("text/html;charset=UTF-8");
+
+       
+        double prixMin = 0;  
+        double prixMax = 0;  
+
+        String prixMinParam = request.getParameter("prixMin");
+        String prixMaxParam = request.getParameter("prixMax");
+
+        if (prixMinParam != null && !prixMinParam.isEmpty()) {
+            prixMin = Double.parseDouble(prixMinParam);
         }
+
+        if (prixMaxParam != null && !prixMaxParam.isEmpty()) {
+            prixMax = Double.parseDouble(prixMaxParam);
+        }
+        String idFournisseur = (String) request.getParameter("idFournisseur");
+        String idCategorie = (String) request.getParameter("idCategorie");
+        List<List<Object>> articles;
+        try {
+            articles = ArticleDao.searchArticle(prixMin, prixMax, idFournisseur, idCategorie);
+            request.setAttribute("article", articles);
+            RequestDispatcher dispat = request.getRequestDispatcher("/resultResearch.jsp");
+            dispat.forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(SearchController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**

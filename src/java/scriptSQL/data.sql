@@ -20,3 +20,6 @@ insert into CategorieArticle values(concat('CategorieArticle_',nextval('seqCateg
 
 /*TABLE ARTICLE*/
 insert into Article values (concat('Article_',nextval('seqArticle')),'Marteux',25000,35000,'CategorieArticle_1','Fournisseur_2');
+
+/*TABLE COMMANDE */
+insert into Commande values (concat('Commande_',nextval('seqCommande')),'Article_1',5,'2022-05-12');

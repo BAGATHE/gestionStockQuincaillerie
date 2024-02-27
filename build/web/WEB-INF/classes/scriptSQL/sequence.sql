@@ -14,3 +14,5 @@ CREATE SEQUENCE seqCategorieArticle;
 CREATE SEQUENCE seqMouvementCategorie;
 CREATE SEQUENCE seqArticle;
 CREATE SEQUENCE seqMouvementArticle;
+CREATE SEQUENCE seqCommande;
+CREATE SEQUENCE seqMouvementCommande;

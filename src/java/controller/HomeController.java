@@ -5,7 +5,8 @@
  */
 package controller;
 
-import dao.UserDao;
+import dao.CategorieArticleDao;
+import dao.FournisseurDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -15,14 +16,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.User;
 
 /**
  *
  * @author Pc
  */
-public class UserController extends HttpServlet {
+public class HomeController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,7 +32,11 @@ public class UserController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-  
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+     
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -46,15 +49,17 @@ public class UserController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            String action = request.getParameter("action");
-        if ("deconnexion".equals(action)) {
-            HttpSession session = request.getSession(false);
-            if (session != null) {
-                session.invalidate();
-                response.sendRedirect(request.getContextPath() + "/index.jsp");
-            }
+        try {
+            /*recuperation de tout les Fournisseur*/
+            request.setAttribute("listFournisseur",FournisseurDao.findAllFournisseur());
+            /*recuperation de tout les categories*/
+            request.setAttribute("listCategorie",CategorieArticleDao.findAllCategorie());
+              RequestDispatcher dispat = request.getRequestDispatcher("/home.jsp");
+            dispat.forward(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-    }
         
     }
 
@@ -69,27 +74,7 @@ public class UserController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            PrintWriter out = response.getWriter();
-            String email = (String) request.getParameter("email");
-            String password = (String) request.getParameter("password");
-            User user = UserDao.checkLogin(email,password);
-            String path="";
-              HttpSession session = request.getSession();
-            if(user!=null){
-               
-                session.setAttribute("sessionUser",user);
-                  response.sendRedirect(request.getContextPath() + "/HomeController");
-                  return;
-            }else{
-                path="index.jsp";
-                String error = "Email ou Mot de passe incorrect";
-                session.setAttribute("sessionError",error);
-                response.sendRedirect(path);
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
     }
 
     /**

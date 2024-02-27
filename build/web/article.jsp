@@ -8,6 +8,8 @@
 <%  List<List<Object>> articles = (List<List<Object>>) request.getAttribute("article");
     List<CategorieArticle> categorieArticle = (List<CategorieArticle>) request.getAttribute("listCategorie");
     List<Fournisseur> fournisseurs = (List<Fournisseur>) request.getAttribute("listFournisseur");
+    
+    
     User user = (User) session.getAttribute("sessionUser");
 
 %>

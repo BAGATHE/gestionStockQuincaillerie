@@ -21,14 +21,15 @@
                     
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="home.jsp" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="HomeController" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Inventaire</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="FournisseurController?action=getlist" class="dropdown-item">Fournisseurs</a>
                             <a href="CategorieArticleController?action=getlist" class="dropdown-item">Categories Article</a>
                             <a href="ArticleController?action=getlist" class="dropdown-item">Article</a>
-                            <a href="Commande.jsp" class="dropdown-item">Commandes</a>
+                            <a href="" class="dropdown-item">Commandes</a>
+                            <a href="" class="dropdown-item">Ajoutez stock</a>
                         </div>
                     </div>
                 </div>
